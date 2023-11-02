@@ -3,15 +3,17 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 type PlaylistPanelProps = {
-  componentData?: any;
+  setSelectedPlaylistID: React.Dispatch<React.SetStateAction<string>>;
+  selectedPlaylistData: any;
 };
 
-export const PlaylistPanel = ({ componentData }: PlaylistPanelProps) => {
+export const PlaylistPanel = ({
+  setSelectedPlaylistID,
+  selectedPlaylistData,
+}: PlaylistPanelProps) => {
   const [playlists, setPlaylists] = useState([] as any[]);
   const { data: session, status } = useSession();
   const spotifyApi = useSpotify();
-
-  console.log(spotifyApi);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -27,12 +29,31 @@ export const PlaylistPanel = ({ componentData }: PlaylistPanelProps) => {
       <div className="playlist-panel__items">
         {playlists.map((playlist) => {
           return (
-            <div key={playlist.id} className="playlist-panel__item">
+            <div
+              key={playlist.id}
+              className={`
+              ${
+                playlist.id === selectedPlaylistData.id
+                  ? "bg-spotify-white/20"
+                  : ""
+              }
+              playlist-panel__item`}
+              onClick={() => setSelectedPlaylistID(playlist.id)}
+              style={{
+                backgroundColor:
+                  playlist.id === selectedPlaylistData.id ? "" : "",
+              }}
+            >
               <figure>
-                <img src={playlist.images[0].url} alt={playlist.name} />
+                {playlist.images[0] && (
+                  <img src={playlist.images[0].url} alt={playlist.name} />
+                )}
               </figure>
               <div className="playlist-panel__item-details">
-                {playlist.name}
+                <p className="playlist-panel__name">{playlist.name}</p>
+                <p className="playlist-panel__owner">
+                  {playlist.owner.display_name}
+                </p>
               </div>
             </div>
           );

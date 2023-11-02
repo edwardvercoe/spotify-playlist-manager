@@ -6,12 +6,21 @@
 @import "../components/Layout/layout.scss";
 @import "../components/PlaylistPanel/playlist-panel.scss";
 @import "../components/PlaylistBanner/playlist-banner.scss";
+@import "../components/Nav/nav.scss";
+@import "../components/SongListTable/song-list-table.scss";
 
 body {
-  @apply bg-spotify-black text-white;
+  @apply bg-spotify-black text-spotify-white;
   @apply overflow-x-hidden;
+  @apply font-light;
 }
-
+main {
+  @apply min-h-screen;
+}
 section {
   @apply relative w-full;
+}
+
+:root {
+  color-scheme: dark;
 }

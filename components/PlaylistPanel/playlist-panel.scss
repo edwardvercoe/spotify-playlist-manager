@@ -1,17 +1,42 @@
 .playlist-panel {
-  @apply bg-spotify-gray;
   @apply w-full;
-  @apply p-4;
 
   &__items {
   }
 
+  &__owner {
+    @apply text-spotify-white/50;
+  }
+
   &__item {
-    @apply flex;
+    @apply flex items-center;
+    @apply py-2;
+    @apply px-4;
+
+    @apply transition-colors duration-200;
+    @apply rounded cursor-pointer;
+
+    &:hover {
+      @apply bg-spotify-white/10;
+    }
+
+    &-details {
+      @apply overflow-hidden;
+      @apply whitespace-nowrap;
+    }
+
     figure {
-      @apply w-8 h-8;
+      @apply w-10 h-10;
+      @apply flex-shrink-0;
+      @apply mr-3;
+      @apply bg-spotify-black/90;
+      @apply rounded;
+
       img {
         @apply w-full h-full object-center object-cover;
+        @apply rounded;
+      }
+      p {
       }
     }
   }

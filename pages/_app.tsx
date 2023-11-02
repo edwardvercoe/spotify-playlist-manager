@@ -1,14 +1,14 @@
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
-import AuthSessionProvider from "../components/AuthSessionProvider";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
   return (
-    <AuthSessionProvider session={session}>
+    <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
-    </AuthSessionProvider>
+    </SessionProvider>
   );
 }

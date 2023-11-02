@@ -1,0 +1,24 @@
+.nav {
+  @apply absolute top-4 right-4 z-50;
+  button {
+    @apply bg-spotify-black/30;
+    @apply border border-spotify-white/10;
+    @apply text-spotify-white/50;
+    @apply rounded-xl;
+    @apply py-1 px-3;
+    @apply flex gap-2 justify-center items-center;
+    @apply text-sm;
+    @apply transition-colors duration-200;
+    &:hover {
+      @apply bg-spotify-black/50;
+      @apply text-spotify-white;
+    }
+
+    figure {
+      @apply w-6 h-6;
+      img {
+        @apply rounded-full border border-spotify-white/20;
+      }
+    }
+  }
+}

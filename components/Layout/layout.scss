@@ -2,17 +2,25 @@
   @apply relative;
   @apply flex flex-col md:flex-row;
   @apply w-full;
-  @apply min-h-screen;
+
   @apply gap-3;
   @apply p-3;
 
   &__aside-panel {
     @apply w-full md:w-1/4;
     @apply flex items-stretch;
+    @apply py-4;
   }
 
   &__main-panel {
     @apply w-full md:w-3/4;
-    @apply flex items-stretch;
+    @apply p-4;
+  }
+  &__panel {
+    @apply bg-spotify-gray;
+    @apply rounded-lg;
+    @apply relative;
+    max-height: calc(100vh - 24px);
+    @apply overflow-x-hidden;
   }
 }
