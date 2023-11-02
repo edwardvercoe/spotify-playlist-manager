@@ -27,7 +27,6 @@ export const SongListTable = ({ selectedPlaylistData }: any) => {
     // var options = { snapshot_id : "0wD+DKCUxiSR/WY8lF3fiCTb7Z8X4ifTUtqn8rO82O4Mvi5wsX8BsLj7IbIpLVM9" };
     spotifyApi.removeTracksFromPlaylist(playlistId, tracks).then(
       function (data) {
-        console.log("Tracks removed from playlist!");
         setPlaylistTracks(
           playlistTracks.filter((song: any) => song.track.uri !== trackUri)
         );

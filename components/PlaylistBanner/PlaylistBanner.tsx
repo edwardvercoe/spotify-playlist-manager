@@ -11,15 +11,12 @@ export const PlaylistBanner = ({
   selectedPlaylistData,
   setSelectedPlaylistData,
 }: PlaylistBannerProps) => {
-  console.log("selectedPlaylistData", selectedPlaylistData);
   const spotifyApi = useSpotify();
   const { toast } = useToast();
   const handleUnfollowPlaylist = (playlistId: string, playlistName: string) => {
-    console.log("Unfollow playlist");
     // Unfollow a playlist
     spotifyApi.unfollowPlaylist(playlistId).then(
       function (data) {
-        console.log("Playlist successfully unfollowed!");
         setSelectedPlaylistData({});
         toast({
           title: `Unfollowed playlist ${playlistName}`,

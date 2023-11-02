@@ -20,7 +20,6 @@ export const Layout = ({ componentData }: LayoutProps) => {
     if (!selectedPlaylistID) return;
     spotifyApi.getPlaylist(selectedPlaylistID).then(
       function (data) {
-        // console.log("Some information about this playlist", data.body);
         setSelectedPlaylistData(data.body);
       },
       function (err) {
