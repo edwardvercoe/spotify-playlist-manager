@@ -21,7 +21,7 @@ export const PlaylistPanel = ({
         setPlaylists(data.body.items);
       });
     }
-  }, [session, spotifyApi]);
+  }, [session, spotifyApi, selectedPlaylistData]);
 
   return (
     <aside className="playlist-panel">

@@ -10,13 +10,8 @@ const scopes = [
   "playlist-read-collaborative",
   "user-library-read",
   "user-library-modify",
-  "user-read-playback-state",
-  "user-modify-playback-state",
-  "user-read-currently-playing",
   "user-read-recently-played",
   "user-top-read",
-  "user-follow-read",
-  "user-follow-modify",
 ].join(",");
 
 const params = {
@@ -27,7 +22,7 @@ const LOGIN_URL =
   "https://accounts.spotify.com/authorize?" +
   new URLSearchParams(params).toString();
 
-async function refreshAccessToken(token) {
+async function refreshAccessToken(token: any) {
   const params = new URLSearchParams();
   params.append("grant_type", "refresh_token");
   params.append("refresh_token", token.refreshToken);
@@ -36,10 +31,12 @@ async function refreshAccessToken(token) {
     headers: {
       Authorization:
         "Basic " +
-        new Buffer.from(
-          process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID +
-            ":" +
-            process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+        (
+          Buffer.from(
+            process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID +
+              ":" +
+              process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET
+          ) as Buffer
         ).toString("base64"),
     },
     body: params,
@@ -57,8 +54,8 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     SpotifyProvider({
-      clientId: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || "",
+      clientSecret: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || "",
       authorization: LOGIN_URL,
     }),
   ],
@@ -67,7 +64,7 @@ export const authOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account }: any) {
       // Persist the OAuth access_token to the token right after signin
       if (account) {
         token.accessToken = account.access_token;
@@ -86,7 +83,7 @@ export const authOptions = {
       // access token has expired
       return await refreshAccessToken(token);
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken;
       return session;

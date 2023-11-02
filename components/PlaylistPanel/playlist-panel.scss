@@ -3,7 +3,11 @@
 
   &__items {
   }
-
+  h2 {
+    @apply px-4;
+    @apply text-2xl;
+    @apply mb-4;
+  }
   &__owner {
     @apply text-spotify-white/50;
   }
@@ -31,6 +35,7 @@
       @apply mr-3;
       @apply bg-spotify-black/90;
       @apply rounded;
+      @apply bg-gradient-to-tl from-spotify-gray to-spotify-black;
 
       img {
         @apply w-full h-full object-center object-cover;

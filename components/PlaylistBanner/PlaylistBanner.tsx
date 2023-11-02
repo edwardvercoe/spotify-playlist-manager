@@ -1,17 +1,43 @@
+import DeleteSvg from "@assets/svg/delete.svg";
+import useSpotify from "@/hooks/useSpotify";
+import { useToast } from "@/components/ui/use-toast";
+
 type PlaylistBannerProps = {
   selectedPlaylistData: any;
+  setSelectedPlaylistData: any;
 };
 
 export const PlaylistBanner = ({
   selectedPlaylistData,
+  setSelectedPlaylistData,
 }: PlaylistBannerProps) => {
+  console.log("selectedPlaylistData", selectedPlaylistData);
+  const spotifyApi = useSpotify();
+  const { toast } = useToast();
+  const handleUnfollowPlaylist = (playlistId: string, playlistName: string) => {
+    console.log("Unfollow playlist");
+    // Unfollow a playlist
+    spotifyApi.unfollowPlaylist(playlistId).then(
+      function (data) {
+        console.log("Playlist successfully unfollowed!");
+        setSelectedPlaylistData({});
+        toast({
+          title: `Unfollowed playlist ${playlistName}`,
+        });
+      },
+      function (err) {
+        console.log("Something went wrong!", err);
+      }
+    );
+  };
+
   return (
     <section className="playlist-banner">
       <figure>
-        {selectedPlaylistData?.images && (
+        {selectedPlaylistData?.images?.length > 0 && (
           <img
             className="playlist-banner__image"
-            src={selectedPlaylistData?.images[0].url}
+            src={selectedPlaylistData?.images[0].url || ""}
             alt="Playlist Banner"
           />
         )}
@@ -25,6 +51,21 @@ export const PlaylistBanner = ({
               __html: selectedPlaylistData?.description,
             }}
           ></p>
+          {Object.keys(selectedPlaylistData).length > 0 && (
+            <div className="playlist-banner__button">
+              <button
+                onClick={() =>
+                  handleUnfollowPlaylist(
+                    selectedPlaylistData.id,
+                    selectedPlaylistData.name
+                  )
+                }
+              >
+                <span>Unfollow Playlist</span>
+                <DeleteSvg />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

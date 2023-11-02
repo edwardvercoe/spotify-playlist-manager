@@ -20,7 +20,7 @@ export const Layout = ({ componentData }: LayoutProps) => {
     if (!selectedPlaylistID) return;
     spotifyApi.getPlaylist(selectedPlaylistID).then(
       function (data) {
-        console.log("Some information about this playlist", data.body);
+        // console.log("Some information about this playlist", data.body);
         setSelectedPlaylistData(data.body);
       },
       function (err) {
@@ -39,7 +39,10 @@ export const Layout = ({ componentData }: LayoutProps) => {
       </div>
       <div className="layout__main-panel layout__panel">
         <Nav userImage={session?.user?.image} />
-        <PlaylistBanner selectedPlaylistData={selectedPlaylistData} />
+        <PlaylistBanner
+          selectedPlaylistData={selectedPlaylistData}
+          setSelectedPlaylistData={setSelectedPlaylistData}
+        />
         <SongListTable selectedPlaylistData={selectedPlaylistData} />
       </div>
     </div>

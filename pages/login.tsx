@@ -2,7 +2,7 @@ import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
-export const Login = ({ providers }) => {
+export const Login = ({ providers }: any) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -13,16 +13,18 @@ export const Login = ({ providers }) => {
   }, [session]);
 
   return (
-    <div>
-      <h1>Spotify login</h1>
-      {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
-          <button onClick={() => signIn(provider.id, { callbackUrl: "/" })}>
-            Log in with {provider.name}
-          </button>
-        </div>
-      ))}
-    </div>
+    <main>
+      <section className="login-page">
+        <h1>Spotify Playlist Manager</h1>
+        {Object.values(providers).map((provider: any) => (
+          <div key={provider.name}>
+            <button onClick={() => signIn(provider.id, { callbackUrl: "/" })}>
+              Log in with {provider.name}
+            </button>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 };
 

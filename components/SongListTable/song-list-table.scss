@@ -1,11 +1,26 @@
 .song-list-table {
+  @apply p-4;
   table {
     @apply text-spotify-white/50;
     @apply w-full;
-
     thead {
-      @apply border-b border-spotify-white/10;
+      @apply text-spotify-white;
     }
+
+    tr {
+      @apply transition-colors;
+      @apply rounded;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+
+      &:hover {
+        @apply bg-spotify-white/10;
+        svg {
+          @apply opacity-100;
+        }
+      }
+    }
+
     th {
       @apply text-left;
 
@@ -16,15 +31,12 @@
     td {
       @apply pr-4;
     }
-    tr {
-      @apply transition-colors duration-200;
-      @apply rounded;
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
 
-      &:hover {
-        @apply bg-spotify-white/10;
-      }
+    svg {
+      @apply h-6 w-6;
+      @apply opacity-0;
+      @apply transition-opacity;
+      @apply cursor-pointer;
     }
   }
 

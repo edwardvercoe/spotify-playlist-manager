@@ -14,11 +14,35 @@ body {
   @apply overflow-x-hidden;
   @apply font-light;
 }
+
 main {
   @apply min-h-screen;
 }
 section {
   @apply relative w-full;
+}
+
+.login-page {
+  @apply min-h-screen;
+  @apply w-full;
+  @apply flex flex-col justify-center items-center;
+  h1 {
+    @apply text-6xl;
+    @apply mb-12;
+  }
+
+  button {
+    @apply text-spotify-white/80;
+    @apply bg-spotify-green/80;
+    @apply rounded-3xl;
+    @apply border border-spotify-white/20;
+    @apply py-2 px-5;
+    @apply flex gap-2 justify-center items-center;
+    @apply transition-colors duration-200;
+    &:hover {
+      @apply bg-spotify-green text-spotify-white;
+    }
+  }
 }
 
 :root {
