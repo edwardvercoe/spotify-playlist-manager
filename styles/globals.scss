@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// components
+@import "../components/Layout/layout.scss";
+@import "../components/PlaylistPanel/playlist-panel.scss";
+@import "../components/PlaylistBanner/playlist-banner.scss";
+
+body {
+  @apply bg-spotify-black text-white;
+  @apply overflow-x-hidden;
+}
+
+section {
+  @apply relative w-full;
+}

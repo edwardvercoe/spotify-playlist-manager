@@ -1,0 +1,18 @@
+.playlist-panel {
+  @apply bg-spotify-gray;
+  @apply w-full;
+  @apply p-4;
+
+  &__items {
+  }
+
+  &__item {
+    @apply flex;
+    figure {
+      @apply w-8 h-8;
+      img {
+        @apply w-full h-full object-center object-cover;
+      }
+    }
+  }
+}
