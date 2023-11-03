@@ -36,6 +36,11 @@ export const SongListTable = ({ selectedPlaylistData }: any) => {
       },
       function (err) {
         console.log("Something went wrong!", err);
+        if (err.body.error.status === 403) {
+          toast({
+            title: "You don't have permission to edit a playlist you don't own",
+          });
+        }
       }
     );
   };
